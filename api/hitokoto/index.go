@@ -23,6 +23,7 @@ func (r Result) Output(w http.ResponseWriter, outputType string) {
 		w.Header().Set("Content-Type", "application/json;charset=UTF-8")
 		_ = json.NewEncoder(w).Encode(r)
 	default:
+		w.Header().Set("Content-Type", "text/plain; charset=UTF-8")
 		_, _ = w.Write([]byte(r.Text))
 	}
 }
