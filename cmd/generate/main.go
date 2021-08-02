@@ -13,7 +13,7 @@ func main() {
 		panic(err)
 	}
 
-	arr := bytes.Split(bts, []byte("\n"))
+	arr := bytes.Split(bytes.ReplaceAll(bts, []byte("\r"), nil), []byte("\n"))
 	data := Data{Text: make([]string, 0, len(arr)), Length: 0}
 
 	for _, v := range arr {
