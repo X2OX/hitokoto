@@ -66,5 +66,5 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 一键部署及手动部署，同步上游即可更新。 自定义部署更新 Go Mod 内的版本即可。
 
 
-[![Powered by Vercel](https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg)](https://vercel.com?utm_source=x2ox&utm_campaign=oss)
+[![Powered by Vercel](https://hitokoto.x2ox.com/powered-by-vercel.svg)](https://vercel.com?utm_source=x2ox&utm_campaign=oss)
 
