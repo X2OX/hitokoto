@@ -13,7 +13,7 @@ func main() {
 		panic(err)
 	}
 
-	arr := bytes.Split(bytes.ReplaceAll(bts, []byte("\r"), nil), []byte("\n"))
+	arr := bytes.Split(bytes.ReplaceAll(bts, []byte("\r"), []byte("\n")), []byte("\n"))
 	data := Data{Text: make([]string, 0, len(arr)), Length: 0}
 
 	for _, v := range arr {
@@ -21,11 +21,11 @@ func main() {
 			continue
 		}
 		data.Text = append(data.Text, string(v))
-		data.Length++
 	}
+	data.Length = len(data.Text)
 
 	var file *os.File
-	if file, err = os.OpenFile("data/data.go", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666); err != nil {
+	if file, err = os.OpenFile("data/data.gen.go", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666); err != nil {
 		panic(err)
 	}
 
@@ -43,15 +43,6 @@ const (
 	tpl = `// Code generated, DO NOT EDIT.
 
 package data
-
-import (
-	"math/rand"
-	"time"
-)
-
-func Random() string       { return Data[getRandom(dataLength)] }
-func Get(index int) string { return Data[index%dataLength] }
-func getRandom(n int) int  { return rand.New(rand.NewSource(time.Now().Unix())).Intn(n) }
 
 var (
 	Data = []string{
