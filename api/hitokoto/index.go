@@ -6,9 +6,14 @@ import (
 	"strings"
 
 	"go.x2ox.com/hitokoto/data"
+	"go.x2ox.com/utils/cors"
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
+	cors.CORS(w, r, Hitokoto)
+}
+
+func Hitokoto(w http.ResponseWriter, r *http.Request) {
 	newResult().Output(w, strings.ToLower(r.URL.Query().Get("type")))
 }
 
